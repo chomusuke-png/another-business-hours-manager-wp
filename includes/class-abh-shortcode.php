@@ -12,7 +12,6 @@ class ABH_Shortcode
 
     public function render($atts)
     {
-        // Llamamos a la lógica estática
         $status = ABH_Logic::get_current_status();
 
         $days_map = [
@@ -39,15 +38,34 @@ class ABH_Shortcode
                 $current_day = strtolower(date('l'));
                 foreach ($days_map as $key => $label):
                     $is_closed = get_option("abh_{$key}_closed");
-                    $start = get_option("abh_{$key}_start");
-                    $end = get_option("abh_{$key}_end");
 
-                    $time_str = ($is_closed || !$start) ? 'Cerrado' : date("H:i", strtotime($start)) . " - " . date("H:i", strtotime($end));
+                    $start1 = get_option("abh_{$key}_start");
+                    $end1 = get_option("abh_{$key}_end");
+
+                    $start2 = get_option("abh_{$key}_start_2");
+                    $end2 = get_option("abh_{$key}_end_2");
+
+                    $time_html = '';
+
+                    if ($is_closed) {
+                        $time_html = 'Cerrado';
+                    } elseif ($start1 && $end1) {
+                        // Turno 1
+                        $time_html .= date("H:i", strtotime($start1)) . " - " . date("H:i", strtotime($end1));
+
+                        // Turno 2 (Si existe)
+                        if ($start2 && $end2) {
+                            $time_html .= "<br>" . date("H:i", strtotime($start2)) . " - " . date("H:i", strtotime($end2));
+                        }
+                    } else {
+                        $time_html = 'Cerrado';
+                    }
+
                     $today_class = ($key === $current_day) ? 'is-today' : '';
                     ?>
                     <li class="<?php echo $today_class; ?>">
                         <span class="day-label"><?php echo $label; ?></span>
-                        <span class="time-label"><?php echo $time_str; ?></span>
+                        <span class="time-label" style="text-align: right;"><?php echo $time_html; ?></span>
                     </li>
                 <?php endforeach; ?>
             </ul>

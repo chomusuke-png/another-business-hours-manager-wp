@@ -46,6 +46,7 @@
     padding: 4px 0;
     color: #666;
     border-bottom: 1px solid #f9f9f9;
+    align-items: flex-start;
 }
 
 .abh-list li:last-child { border-bottom: none; }
@@ -64,4 +65,9 @@
     color: #888;
     margin-top: 15px;
     font-style: italic;
+}
+
+.time-label {
+    text-align: right;
+    line-height: 1.4; /* Espacio entre los dos horarios */
 }

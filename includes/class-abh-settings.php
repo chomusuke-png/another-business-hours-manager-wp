@@ -28,8 +28,14 @@ class ABH_Settings
     {
         $days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
         foreach ($days as $day) {
+            // Turno 1
             register_setting('abh_hours_group', "abh_{$day}_start");
             register_setting('abh_hours_group', "abh_{$day}_end");
+
+            // Turno 2 (NUEVO)
+            register_setting('abh_hours_group', "abh_{$day}_start_2");
+            register_setting('abh_hours_group', "abh_{$day}_end_2");
+
             register_setting('abh_hours_group', "abh_{$day}_closed");
         }
         register_setting('abh_hours_group', 'abh_custom_msg');
@@ -49,31 +55,56 @@ class ABH_Settings
         ?>
         <div class="wrap">
             <h1>Configuración de Horarios</h1>
+            <p>Configura los turnos de atención. Si tienes horario continuado, deja el "Turno 2" vacío.</p>
+
             <form method="post" action="options.php"
-                style="background: #fff; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); max-width: 600px;">
+                style="background: #fff; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); max-width: 800px;">
                 <?php settings_fields('abh_hours_group'); ?>
                 <table class="form-table">
-                    <?php foreach ($days_labels as $key => $label): ?>
+                    <thead>
                         <tr>
-                            <th scope="row"><?php echo $label; ?></th>
-                            <td>
-                                <label>
-                                    <input type="checkbox" name="abh_<?php echo $key; ?>_closed" value="1" <?php checked(1, get_option("abh_{$key}_closed"), true); ?>>
-                                    Cerrado
-                                </label> &nbsp;
-                                <input type="time" name="abh_<?php echo $key; ?>_start"
-                                    value="<?php echo esc_attr(get_option("abh_{$key}_start")); ?>"> a
-                                <input type="time" name="abh_<?php echo $key; ?>_end"
-                                    value="<?php echo esc_attr(get_option("abh_{$key}_end")); ?>">
-                            </td>
+                            <th>Día</th>
+                            <th>Estado</th>
+                            <th>Turno Mañana</th>
+                            <th>Turno Tarde (Opcional)</th>
                         </tr>
-                    <?php endforeach; ?>
-                    <tr>
-                        <th scope="row">Mensaje Extra</th>
-                        <td><input type="text" name="abh_custom_msg" class="regular-text"
-                                value="<?php echo esc_attr(get_option('abh_custom_msg')); ?>"></td>
-                    </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($days_labels as $key => $label): ?>
+                            <tr>
+                                <td style="vertical-align: middle;"><strong><?php echo $label; ?></strong></td>
+                                <td style="vertical-align: middle;">
+                                    <label>
+                                        <input type="checkbox" name="abh_<?php echo $key; ?>_closed" value="1" <?php checked(1, get_option("abh_{$key}_closed"), true); ?>>
+                                        Cerrado
+                                    </label>
+                                </td>
+                                <td>
+                                    <input type="time" name="abh_<?php echo $key; ?>_start"
+                                        value="<?php echo esc_attr(get_option("abh_{$key}_start")); ?>"> a
+                                    <input type="time" name="abh_<?php echo $key; ?>_end"
+                                        value="<?php echo esc_attr(get_option("abh_{$key}_end")); ?>">
+                                </td>
+                                <td>
+                                    <input type="time" name="abh_<?php echo $key; ?>_start_2"
+                                        value="<?php echo esc_attr(get_option("abh_{$key}_start_2")); ?>"> a
+                                    <input type="time" name="abh_<?php echo $key; ?>_end_2"
+                                        value="<?php echo esc_attr(get_option("abh_{$key}_end_2")); ?>">
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
                 </table>
+
+                <hr>
+
+                <p>
+                    <label><strong>Mensaje Extra:</strong></label>
+                    <input type="text" name="abh_custom_msg" class="regular-text"
+                        value="<?php echo esc_attr(get_option('abh_custom_msg')); ?>"
+                        placeholder="Ej: Horario de colación de 14:00 a 15:00">
+                </p>
+
                 <?php submit_button(); ?>
             </form>
         </div>

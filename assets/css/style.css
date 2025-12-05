@@ -1,0 +1,67 @@
+.abh-widget-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    text-align: center;
+    font-family: inherit;
+}
+
+.abh-title {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.abh-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+}
+
+.abh-badge.open { background-color: #28a745; }
+.abh-badge.closed { background-color: #dc3545; }
+.abh-badge.holiday { background-color: #6f42c1; }
+
+.abh-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    font-size: 0.9rem;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 10px;
+}
+
+.abh-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    color: #666;
+    border-bottom: 1px solid #f9f9f9;
+}
+
+.abh-list li:last-child { border-bottom: none; }
+
+.abh-list li.is-today {
+    font-weight: 700;
+    color: #333;
+    background-color: rgba(0,0,0,0.03);
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 4px;
+}
+
+.abh-msg {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 15px;
+    font-style: italic;
+}

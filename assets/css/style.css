@@ -3,16 +3,37 @@
     border: 1px solid #eee;
     border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     text-align: center;
     font-family: inherit;
+    max-width: 100%;
+    /* Asegura que no se desborde */
 }
 
 .abh-title {
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
+    /* Menos margen para acercar la zona horaria */
     font-size: 1.1rem;
     color: #333;
+    font-weight: 700;
+}
+
+/* Nueva clase para la zona horaria arriba */
+.abh-timezone-header {
+    margin-bottom: 15px;
+    color: #888;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.abh-timezone-header .dashicons {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+    margin-right: 2px;
 }
 
 .abh-badge {
@@ -23,12 +44,20 @@
     color: #fff;
     text-transform: uppercase;
     font-size: 0.85rem;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
-.abh-badge.open { background-color: #28a745; }
-.abh-badge.closed { background-color: #dc3545; }
-.abh-badge.holiday { background-color: #6f42c1; }
+.abh-badge.open {
+    background-color: #28a745;
+}
+
+.abh-badge.closed {
+    background-color: #dc3545;
+}
+
+.abh-badge.holiday {
+    background-color: #6f42c1;
+}
 
 .abh-list {
     list-style: none;
@@ -43,21 +72,50 @@
 .abh-list li {
     display: flex;
     justify-content: space-between;
-    padding: 4px 0;
-    color: #666;
+    align-items: center;
+    /* Centrado vertical para que se vea alineado */
+    padding: 6px 0;
+    color: #555;
     border-bottom: 1px solid #f9f9f9;
-    align-items: flex-start;
 }
 
-.abh-list li:last-child { border-bottom: none; }
+.abh-list li:last-child {
+    border-bottom: none;
+}
 
 .abh-list li.is-today {
     font-weight: 700;
-    color: #333;
-    background-color: rgba(0,0,0,0.03);
-    padding-left: 5px;
-    padding-right: 5px;
+    color: #000;
+    background-color: rgba(0, 0, 0, 0.04);
+    padding-left: 8px;
+    padding-right: 8px;
     border-radius: 4px;
+    margin: 0 -8px;
+    /* Truco para que el fondo se salga un poco */
+}
+
+.day-label {
+    flex-shrink: 0;
+    /* El día no se encoge */
+    margin-right: 10px;
+}
+
+.time-label {
+    text-align: right;
+    font-size: 0.85rem;
+    /* Un poco más chico para que quepan los dos turnos */
+    white-space: nowrap;
+    /* Evita que se parta en dos líneas si es posible */
+}
+
+.separator {
+    color: #ccc;
+    margin: 0 2px;
+}
+
+.closed-text {
+    color: #d66;
+    font-style: italic;
 }
 
 .abh-msg {
@@ -65,39 +123,5 @@
     color: #888;
     margin-top: 15px;
     font-style: italic;
-}
-
-/* Ajuste para que los dos horarios se vean alineados a la derecha */
-.abh-list li {
-    align-items: flex-start; /* Importante para doble línea */
-}
-
-.time-label {
-    text-align: right;
-    line-height: 1.4; /* Espacio entre turno 1 y 2 */
-    font-size: 0.85rem;
-}
-
-.closed-text {
-    color: #d66; /* Un rojo suave para texto cerrado en la lista */
-    font-style: italic;
-}
-
-/* Zona Horaria al pie */
-.abh-timezone {
-    margin-top: 15px;
-    padding-top: 10px;
-    border-top: 1px dashed #eee;
-    color: #999;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.abh-timezone .dashicons {
-    font-size: 14px;
-    width: 14px;
-    height: 14px;
-    vertical-align: middle;
-    margin-right: 3px;
+    line-height: 1.4;
 }

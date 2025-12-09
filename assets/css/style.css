@@ -7,13 +7,11 @@
     text-align: center;
     font-family: inherit;
     max-width: 100%;
-    /* Asegura que no se desborde */
 }
 
 .abh-title {
     margin-top: 0;
     margin-bottom: 5px;
-    /* Menos margen para acercar la zona horaria */
     font-size: 1.1rem;
     color: #333;
     font-weight: 700;
@@ -73,7 +71,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* Centrado vertical para que se vea alineado */
     padding: 6px 0;
     color: #555;
     border-bottom: 1px solid #f9f9f9;
@@ -91,21 +88,17 @@
     padding-right: 8px;
     border-radius: 4px;
     margin: 0 -8px;
-    /* Truco para que el fondo se salga un poco */
 }
 
 .day-label {
     flex-shrink: 0;
-    /* El día no se encoge */
     margin-right: 10px;
 }
 
 .time-label {
     text-align: right;
     font-size: 0.85rem;
-    /* Un poco más chico para que quepan los dos turnos */
     white-space: nowrap;
-    /* Evita que se parta en dos líneas si es posible */
 }
 
 .separator {
@@ -124,4 +117,11 @@
     margin-top: 15px;
     font-style: italic;
     line-height: 1.4;
+}
+
+.holiday-text {
+    color: #6f42c1;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
 }
